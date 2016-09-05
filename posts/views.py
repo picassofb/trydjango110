@@ -1,8 +1,8 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 # Create your views here.
-
+from posts.models import Post
 
 def post_create(request):
     return HttpResponse("<h1>Create</h1>")
@@ -21,13 +21,12 @@ def post_delete(request):
 
 
 def post_list(request):
-    if request.user.is_authenticated():
-        content = {
-            "title": "List Content Auth"
-        }
-    else:
-        content = {
-            "title": "List Content Auth!"
-        }
+    queryset = Post.objects.all()
+        
+    content = {
+        "queryset": queryset, 
+        "content": "List Content Auth!"
+    }
+    
 
     return render(request, "index.html", content)
