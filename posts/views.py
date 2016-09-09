@@ -9,7 +9,16 @@ def post_create(request):
 
 
 def post_detail(request):
-    return HttpResponse("<h1>Detail</h1>")
+    #queryset = Post.objects.filter(id=6).values()
+    queryset = get_object_or_404(Post,id=3)
+        
+    content = {
+        "instance": queryset, 
+     }
+    
+
+    return render(request, "post_detail.html", content)
+
 
 
 def post_update(request):

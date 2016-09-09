@@ -9,6 +9,7 @@
     <h1>{{ content }} Posts!!</h1>
     
     {% for obj in queryset %}
+    {{ obj.id }} <br>
     {{ obj.title }} <br>
     {{ obj.content }} <br>
     {% endfor %}
