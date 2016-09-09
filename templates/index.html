@@ -6,14 +6,13 @@
 </head>
 <body>
 
-    <h1>{{ content }} Posts!!</h1>
-    
     {% for obj in queryset %}
+    {% url "posts:detail" id=obj.id %}
+    <a href="{{ obj.get_absolute_url }}"> {{ obj.title }} </a> <br>
     {{ obj.id }} <br>
     {{ obj.title }} <br>
     {{ obj.content }} <br>
     {% endfor %}
     
-
 </body>
 </html>
