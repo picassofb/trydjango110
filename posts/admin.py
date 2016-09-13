@@ -6,8 +6,8 @@ from posts.models import Post
 
 
 class PostModelAdmin(admin.ModelAdmin):
-    list_display = ('title','content')
-    list_filter = ('updated','timestamps')
+    list_display = ('title', 'content')
+    list_filter = ('updated', 'timestamps')
 
     class Meta:
         model = Post
