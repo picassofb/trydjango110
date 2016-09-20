@@ -1,16 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Posts!</title>
-</head>
-<body>
 
+{% extends "base.html" %}
+
+{% block head_title %}
+    {{ instance.title }} | {{ block.super }} Try Django 1.10
+{% endblock head_title %}
+
+<style>
+    {% block style %}
+        h1 {
+            color: bisque;
+        }
+    {% endblock style %}
+</style>
+
+{% block content %}
     <h1>  {{ instance.title }} </h1>
     
     {{ instance.id }} <br>
     {{ instance.title }} <br>
     {{ instance.content }} <br>
-
-</body>
-</html>
+{% endblock content %}

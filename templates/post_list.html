@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% for obj in queryset %}
+        {% url "posts:detail" id=obj.id %}
+        <br /><a href="{{ obj.get_absolute_url }}"> {{ obj.title }} </a> <br />
+        {{ obj.id }} <br>
+        {{ obj.title }} <br>
+        {{ obj.content }} <br>
+    {% endfor %}
+{% endblock content %}
