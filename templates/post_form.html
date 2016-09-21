@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Form</h1>
-    
-    <form method="POST" action="">
-        
-        {{form.as_p  }}
-        {% csrf_token %}
-        <input type="submit" value="Create form" />
-    </form>
+    <div class="col-sm-6 col-sm-offset-3">
+        <h1>Form</h1>
+        <form method="POST" action="">
+            {{form.as_p  }}
+            {% csrf_token %}
+            <input type="submit" class="btn btn-primary" value="Create form" />
+        </form>
+    </div>
 {% endblock content %}

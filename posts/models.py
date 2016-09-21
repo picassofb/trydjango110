@@ -7,14 +7,16 @@ from django.core.urlresolvers import reverse
 
 
 class Post(models.Model):
-    title = models.CharField(max_length=5)
+    title = models.CharField(max_length=20)
     content = models.TextField()
     updated = models.DateTimeField(auto_now=True,auto_now_add=False)
     timestamps = models.DateTimeField(auto_now=False, auto_now_add=True)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.title
     
     def get_absolute_url(self):
         return reverse("posts:detail", kwargs={"id": self.id})
 
+    class Meta:
+        ordering = ["-timestamps", "-updated"]
