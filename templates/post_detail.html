@@ -8,6 +8,9 @@
 {% block content %}
     <div class="col-sm-6 col-sm-offset-3">
         <h1>  {{ instance.title }} <small>{{ instance.timestamps }}</small> </h1>
+        {% if obj.image %}
+            <img src="{{ instance.image.url }}" class="img-responsive" />
+        {% endif %}
         {{ instance.content | linebreaks}} <br>
     </div>
 {% endblock content %}
