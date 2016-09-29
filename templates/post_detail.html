@@ -1,5 +1,6 @@
-
 {% extends "base.html" %}
+{% load urlify %}
+
 
 {% block head_title %}
     {{ instance.title }} | {{ block.super }} Try Django 1.10
@@ -12,15 +13,22 @@
 
     <div class="col-sm-6 col-sm-offset-3">
         <h1>  {{ instance.title }} <small>{{ instance.timestamps }}</small> </h1>
+        {% if instance.user.get_full_name %}
+            <p>Author: {{ instance.user.get_full_name }}</p>
+        {% endif %}
         {% if instance.image %}
             <img src="{{ instance.image.url }}" class="img-responsive" />
         {% endif %}
 
+        <hr />
+        <div class="fb-like" data-href="{{ request.build_absolute_uri }}" data-layout="standard"
+        data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+        <!--
         <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}">
            Facebook
         </a>
 
-        <a href="https://twitter.com/home?status={{ share_string }}%20{{ request.build_absolute_uri }}">
+        <a href="https://twitter.com/home?status={{ instance.content|urlify|truncatechars:80 }}%20{{ request.build_absolute_uri }}">
             Twitter
         </a>
 
@@ -33,8 +41,10 @@
         </a>
 
         <a href="http://www.reddit.com/submit?url={{ request.build_absolute_uri }}&title={{ instance.title }}">Share on Reddit</a>
-
+        -->
         {{ instance.content | linebreaks}} <br>
+
+        <div class="fb-comments" data-href="{{ request.build_absolute_uri }}" data-numposts="5"></div>
     </div>
 
 {% endblock content %}

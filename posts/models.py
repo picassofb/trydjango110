@@ -1,5 +1,6 @@
 from __future__ import unicode_literals
 
+from django.contrib.auth.models import User
 from django.db import models
 from django.db.models.signals import pre_save
 from django.core.urlresolvers import reverse
@@ -13,6 +14,7 @@ def upload_location(instance, filename):
 
 
 class Post(models.Model):
+    user = models.ForeignKey(User, default=1)
     title = models.CharField(max_length=20)
     slug = models.SlugField(unique=True)
     image = models.ImageField(upload_to=upload_location, blank=True,
