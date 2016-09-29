@@ -4,7 +4,11 @@
 {% block content %}
     <div class="col-sm-6 col-sm-offset-3">
         <h1>Post List</h1>
-
+    <form method="get" action="">
+        <input name="q" type="text" placeholder="Search post" value="{{ request.GET.q }}" />
+        <input type="submit" value="Search" />
+    </form>
+    <p></p>
     {% for obj in queryset %}
         <div class="row">
           <div class="col-sm-12">
@@ -29,7 +33,9 @@
     <div class="pagination">
         <span class="step-links">
             {% if queryset.has_previous %}
-                <a href="?{{ page_request_var }}={{ queryset.previous_page_number }}">previous</a>
+                <a href="?{{ page_request_var }}={{ queryset.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">
+                    previous
+                </a>
             {% endif %}
 
             <span class="current">
@@ -37,7 +43,9 @@
             </span>
 
             {% if queryset.has_next %}
-                <a href="?{{ page_request_var }}={{ queryset.next_page_number }}">next</a>
+                <a href="?{{ page_request_var }}={{ queryset.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">
+                    next
+                </a>
             {% endif %}
         </span>
     </div>
