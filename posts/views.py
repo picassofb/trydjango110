@@ -1,4 +1,5 @@
 from urllib.parse import quote_plus
+#from urllib import quote_plus
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect, Http404
 from .forms import PostForm
@@ -55,7 +56,7 @@ def post_update(request, slug=None):
 def post_detail(request, slug=None):
     instance = get_object_or_404(Post, slug=slug)
 
-    if instance.draft or instance.publish > timezone.now().date:
+    if instance.draft or instance.publish > timezone.now().date():
         if not request.user.is_staff or not request.user.is_superuser:
             raise Http404
 
